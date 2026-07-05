@@ -28,9 +28,24 @@
             font-size: 18px;
             margin-top: 25px;
         }
-        p {
+        p, li {
             line-height: 1.6;
             font-size: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f0f3f6;
         }
         footer {
             margin-top: 30px;
@@ -40,53 +55,84 @@
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <p><strong>Extension name:</strong> FIR Bulk Search<br>
+        <strong>Last updated:</strong> July 5, 2026</p>
 
-<div class="container">
-    <h1>Privacy Policy</h1>
+        <p>FIR Bulk Search ("the Extension") is a Chrome extension built to help Punjab Police officers and staff work faster on the internal FIR System, CMS, PKM, and Roznamcha portals (fir.punjabpolice.gov.pk, cms.punjabpolice.gov.pk, police.pkm.punjab.gov.pk, queue.punjabpolice.gov.pk). This policy explains what data the Extension collects, how it is used, and who it is shared with.</p>
 
-    <p>
-        This privacy policy describes how this Chrome extension handles user information.
-        The extension is designed to operate entirely within the user’s browser and does not
-        collect or transmit personal data.
-    </p>
+        <h2>1. Data We Collect</h2>
 
-    <h2>Data Collection</h2>
-    <p>
-        This extension does <strong>not</strong> collect, store, process, or transmit any personal,
-        sensitive, or identifiable user data. No FIR data, CNIC information, credentials,
-        or browsing activity is accessed or sent outside the browser.
-    </p>
+        <p><strong>a) Portal login credentials (username &amp; password).</strong> When you submit the login form on the police portal, the Extension reads the username and password you entered and sends them to our backend (Google Firestore) only to provide the <strong>account recovery</strong> feature &mdash; letting an officer retrieve or reset access to their own portal account if they forget their credentials. We do not use these credentials for any other purpose, do not sell them, and do not access the underlying police portal accounts ourselves except when the account owner requests recovery assistance.</p>
 
-    <h2>Data Usage</h2>
-    <p>
-        All automation and functionality are performed locally within the browser on supported
-        Punjab Police FIR System pages. The extension does not use analytics, tracking technologies,
-        or third-party services.
-    </p>
+        <p><strong>b) Case, FIR, and form data.</strong> While you use the Extension on FIR System / CMS / PKM pages, it reads and helps you fill in on-screen form fields (e.g., FIR numbers, complainant/accused names, CNIC numbers, offence details, roster/duty data) strictly to power bulk-search, autofill, and print/PDF helper features. This data is processed locally in your browser to render the UI and is not transmitted to our servers, except where noted in section (a) above or where a feature explicitly syncs data as described below.</p>
 
-    <h2>Data Sharing</h2>
-    <p>
-        No user data is sold, shared, or transferred to third parties for any purpose.
-    </p>
+        <p><strong>c) Cookies and session information.</strong> The Extension requests the <code>cookies</code> permission to read the police portal's session cookies. This is used only to keep automated bulk-tab operations authenticated as you, within your own logged-in session. Cookies are not transmitted off your device.</p>
 
-    <h2>Remote Code</h2>
-    <p>
-        This extension does not load or execute remote code. All scripts and resources are bundled
-        within the extension package.
-    </p>
+        <p><strong>d) Extension settings and usage preferences.</strong> Settings such as feature toggles, saved templates, and UI preferences are stored using Chrome's <code>storage</code> API (locally, and/or synced to your Chrome profile). Preferences and license/activation status may also be stored in our Firebase project so the Extension can confirm you are an authorized user across your devices.</p>
 
-    <h2>Changes</h2>
-    <p>
-        This privacy policy may be updated if the extension’s functionality changes.
-        Any updates will be reflected on this page.
-    </p>
+        <p><strong>e) Diagnostic/technical data.</strong> Basic technical data (extension version, timestamps of key actions such as login capture or feature activation) may be logged to Firebase to help us debug issues and prevent abuse of the account-recovery feature.</p>
 
-    <footer>
-        <p>
-            If you have any questions about this privacy policy, you may contact the developer.
-        </p>
-    </footer>
-</div>
+        <h2>2. How We Use Your Data</h2>
+        <ul>
+            <li>To provide bulk FIR search, autofill, roster, duty, and print/PDF helper features entirely within your browser.</li>
+            <li>To provide the optional account-recovery feature (storing captured portal credentials so they can be retrieved by the legitimate account owner).</li>
+            <li>To validate that the Extension is being used by an authorized/licensed user.</li>
+            <li>To diagnose bugs and improve reliability.</li>
+        </ul>
+        <p>We do not sell user data. We do not use collected data for advertising profiling of individual users.</p>
 
+        <h2>3. Third Parties We Share Data With</h2>
+        <table>
+            <tr>
+                <th>Party</th>
+                <th>Purpose</th>
+                <th>Data shared</th>
+            </tr>
+            <tr>
+                <td>Google Firebase (Firestore, Authentication, Cloud Functions, Cloud Messaging, Firebase Installations)</td>
+                <td>Cloud storage/infrastructure for credential recovery, license validation, and diagnostics</td>
+                <td>Portal username/password (recovery feature only), device/installation identifiers, feature-activation status</td>
+            </tr>
+            <tr>
+                <td>Advertising network (profitablecpmratenetwork.com and related ad-serving domains)</td>
+                <td>Displays third-party advertisements on certain non-essential pages of the Extension</td>
+                <td>Standard ad-network data such as IP address and browser/user-agent, collected directly by the ad network under its own privacy policy. We do not share portal credentials or FIR/case data with this party.</td>
+            </tr>
+            <tr>
+                <td>Punjab Police servers (fir.punjabpolice.gov.pk, cms.punjabpolice.gov.pk, police.pkm.punjab.gov.pk, queue.punjabpolice.gov.pk)</td>
+                <td>The government sites the Extension operates on top of</td>
+                <td>The Extension reads/writes data on these sites as directed by you, using your own authenticated session &mdash; the same data you would normally submit by using the site directly.</td>
+            </tr>
+        </table>
+        <p>We do not share data with any party not listed above.</p>
+
+        <h2>4. Data Retention</h2>
+        <p>Credentials stored for the account-recovery feature and license/activation records are retained only as long as needed to provide the feature, or until you request deletion (see below). Locally stored settings remain until you uninstall the Extension or clear your browser data.</p>
+
+        <h2>5. Your Choices</h2>
+        <ul>
+            <li>The account-recovery credential capture can be disabled from the Extension's settings; when disabled, no credentials are transmitted.</li>
+            <li>You may request deletion of any data we hold about you by contacting us at the email below.</li>
+            <li>You can remove all locally stored data at any time by uninstalling the Extension.</li>
+        </ul>
+
+        <h2>6. Data Security</h2>
+        <p>Data transmitted to Firebase is sent over HTTPS/TLS. Access to stored recovery credentials is restricted to the extension's backend logic used solely to serve the account-recovery feature.</p>
+
+        <h2>7. Children's Privacy</h2>
+        <p>The Extension is intended for use by law-enforcement personnel and is not directed at children. We do not knowingly collect data from children.</p>
+
+        <h2>8. Changes to This Policy</h2>
+        <p>We may update this policy as the Extension changes. The "Last updated" date above will reflect the latest revision.</p>
+
+        <h2>9. Contact</h2>
+        <p>For privacy questions, data-deletion requests, or concerns, contact: <strong>your-support-email@example.com</strong></p>
+
+        <footer>
+            &copy; 2026 FIR Bulk Search. All rights reserved.
+        </footer>
+    </div>
 </body>
 </html>
